@@ -1,5 +1,7 @@
 import { Builder, By } from 'selenium-webdriver';
 
+import Axios from 'axios';
+
 let driver = new Builder().forBrowser('firefox').build();
 await driver.get('https://bokapass.nemoq.se/Booking/Booking/Index/varmland');
 await driver.findElement(By.css('input[value="Boka ny tid"]')).click();
@@ -11,12 +13,8 @@ await driver.findElement(By.css('input[value="Första lediga tid"]')).click();
 let dateElement = await driver.findElement(By.id('dateText'));
 let date = await dateElement.getText();
 console.log(date);
-let response = await fetch('https://stromnegatan.duckdns.org/api/webhook/autopass', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json;charset=utf-8'
-  },
-  body: `{ "date": "${date}" }`
-});
-console.log(response);
+Axios
+  .post('https://stromnegatan.duckdns.org/api/webhook/autopass', {
+    date: date
+  }).then(r => console.log(r.status));
 await driver.quit();
