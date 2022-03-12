@@ -14,7 +14,7 @@ let dateElement = await driver.findElement(By.id('dateText'));
 let date = await dateElement.getText();
 console.log(date);
 Axios
-  .post('https://stromnegatan.duckdns.org/api/webhook/autopass', {
+  .post(process.env.WEBHOOK_URL, {
     date: date
   }).then(r => console.log(r.status));
 await driver.quit();
