@@ -9,5 +9,14 @@ await driver.findElement(By.css('input[value="2"]')).click();
 await driver.findElement(By.css('input[value="Nästa"]')).click();
 await driver.findElement(By.css('input[value="Första lediga tid"]')).click();
 let dateElement = await driver.findElement(By.id('dateText'));
-console.log(await dateElement.getText());
+let date = await dateElement.getText();
+console.log(date);
+let response = await fetch('https://stromnegatan.duckdns.org/api/webhook/autopass', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json;charset=utf-8'
+  },
+  body: `{ "date": "${date}" }`
+});
+console.log(response);
 await driver.quit();
