@@ -27,9 +27,6 @@ for (let n = 0; n < timecells.length; n++) {
     console.log("Choose " + d);
     await timecells[n].click();
 
-
-    await timecells[0].click();
-
     await driver.findElement(By.css('input[value="Nästa"]')).click();
 
     await driver.findElement(By.css('input[name="Customers[0].BookingFieldValues[0].Value"]')).sendKeys(process.env.FIRST_NAME);
