@@ -3,7 +3,7 @@ import { Builder, By } from 'selenium-webdriver';
 import Axios from 'axios';
 
 let driver = new Builder().forBrowser('firefox').build();
-await driver.manage().setTimeouts({ implicit: 10000, pageLoad: 10000 });
+await driver.manage().setTimeouts({ implicit: 15000, pageLoad: 15000 });
 await driver.get('https://bokapass.nemoq.se/Booking/Booking/Index/varmland');
 await driver.findElement(By.css('input[value="Boka ny tid"]')).click();
 await driver.findElement(By.css('input[type="checkbox"]')).click();
