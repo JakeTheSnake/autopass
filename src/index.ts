@@ -23,7 +23,7 @@ let timecells = await driver.findElements(By.className('timecell'));
 
 for (let n = 0; n < timecells.length; n++) {
   let d = new Date(await timecells[n].getAttribute("data-fromdatetime"));
-  if (d < new Date("2022-05-02 20:50:00") && d > new Date("2022-03-20 14:00:00")) {
+  if ((d < new Date("2022-05-02 20:50:00") && d > new Date("2022-03-20 14:00:00")) || (d.getMonth() === 2 && d.getDate() == 16)) {
     console.log("Choose " + d);
     await timecells[n].click();
 
